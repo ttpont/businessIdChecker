@@ -33,8 +33,8 @@ namespace BusinessIdChecker
             _isValidBusinessId = true;
             _reasonsForDissatisfaction = new List<string>();
 
-            if (entity == null)
-                entity = "";
+            entity = entity ?? "";
+
 
             foreach (var check in _checkList)
             {
@@ -90,7 +90,6 @@ namespace BusinessIdChecker
                 while (entity.Length < 8)
                     entity = "0" + entity;
 
-                //for (int i = 0; i < entity.Length - 2; i++)
                 for (int i = 0; i < CheckSumMultiplyArray.Length; i++)
                 {
                     calculatedSum += (int)char.GetNumericValue(entity, i) * CheckSumMultiplyArray[i];
